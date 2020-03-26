@@ -26,12 +26,14 @@ class JogoDaMemoria {
     ]
     this.iconePadrao = './arquivos/padrao.png'
     this.heroisEscondidos = []
+    this.heroisSelecionados = []
   }
 
   inicializar() {
     this.tela.atualizarImagens(this.heroisIniciais)
 
     this.tela.configurarBotaoJogar(this.jogar.bind(this))
+    this.tela.configurarBotaoVerificarSelecao(this.verificarSelecao.bind(this))
   }
 
   embaralhar() {
@@ -58,6 +60,28 @@ class JogoDaMemoria {
     this.tela.atualizarImagens(heroisOcultos)
 
     this.heroisOcultos = heroisOcultos
+  }
+
+  verificarSelecao(id, nome) {
+    const item = { id, nome }
+    // alert(`Olá ${item.nome}, ${item.id}`)
+    const heroisSelecionados = this.heroisSelecionados.length
+    switch (heroisSelecionados) {
+      case 0:
+        this.heroisSelecionados.push(item)
+        break;
+      case 1:
+        const [opcao1] = this.heroisSelecionados
+        this.heroisSelecionados = []
+
+        if (opcao1.nome === item.nome && opcao1.id !== item.id) {
+          alert(`Combinação correta! Você escolheu: ${item.nome.toUpperCase()}`)
+          return;
+        }
+
+        alert('Opção incorreta!! :wrong:')
+        break;
+    }
   }
 
   jogar() {
