@@ -24,6 +24,8 @@ class JogoDaMemoria {
       { img: './arquivos/wolverine.png', nome: 'wolverine' },
       { img: './arquivos/ww.png', nome: 'ww' },
     ]
+    this.iconePadrao = './arquivos/padrao.png'
+    this.heroisEscondidos = []
   }
 
   inicializar() {
@@ -41,6 +43,21 @@ class JogoDaMemoria {
       .sort(() => Math.random() - 0.5)
 
     this.tela.atualizarImagens(copias)
+    setTimeout(() => {
+      this.esconderHerois(copias)
+    }, 5000)
+  }
+
+  esconderHerois(herois) {
+    const heroisOcultos = herois.map(({ nome, id }) => ({
+      id,
+      nome,
+      img: this.iconePadrao
+    }))
+
+    this.tela.atualizarImagens(heroisOcultos)
+
+    this.heroisOcultos = heroisOcultos
   }
 
   jogar() {
