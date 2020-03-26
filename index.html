@@ -6,6 +6,7 @@
   <title>Memory Game</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <script src="./index.js"></script>
+  <script src="./src/util.js"></script>
   <script src="./src/jogoDaMemoria.js"></script>
   <script src="./src/tela.js"></script>
 </head>
@@ -14,6 +15,15 @@
   <div class="row container-fluid">
     <button type="button" class="btn btn-success" id="jogar">Clique aqui para iniciar</button>
     <button type="button" class="btn btn-danger" id="mostrarTudo">Mostrar tudo</button>
+  </div>
+  <br />
+  <div id="carregando" class="row container-fluid invisible">
+    <h1>
+      <strong id="contador">Começando em 1...</strong>
+      <div class="spinner-border text-warning" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </h1>
   </div>
   <br />
   <div id="conteudo" class="row"></div>
