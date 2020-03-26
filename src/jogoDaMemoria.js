@@ -62,6 +62,12 @@ class JogoDaMemoria {
     this.heroisOcultos = heroisOcultos
   }
 
+  exibirHerois(nomeDoHeroi) {
+    const { img } = this.heroisIniciais.find(({ nome }) => nomeDoHeroi === nome)
+
+    this.tela.exibirHerois(nomeDoHeroi, img)
+  }
+
   verificarSelecao(id, nome) {
     const item = { id, nome }
     // alert(`Olá ${item.nome}, ${item.id}`)
@@ -75,11 +81,19 @@ class JogoDaMemoria {
         this.heroisSelecionados = []
 
         if (opcao1.nome === item.nome && opcao1.id !== item.id) {
-          alert(`Combinação correta! Você escolheu: ${item.nome.toUpperCase()}`)
+          // alert(`Combinação correta! Você escolheu: ${item.nome.toUpperCase()}`)
+          this.exibirHerois(item.nome)
+          this.tela.exibirMensagem(true, item.nome)
           return;
         }
 
-        alert('Opção incorreta!! :wrong:')
+        if (opcao1.nome === item.nome) {
+          this.tela.exibirMensagem(false, opcao1.nome.concat(' na mesma posição!'))
+          return;
+        }
+
+        // alert('Opção incorreta!! :wrong:')
+        this.tela.exibirMensagem(false, opcao1.nome.concat(' e ').concat(item.nome))
         break;
     }
   }
