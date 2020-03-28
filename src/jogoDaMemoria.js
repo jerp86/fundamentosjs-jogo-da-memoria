@@ -65,10 +65,34 @@ class JogoDaMemoria {
       img: this.iconePadrao
     }))
 
-    // console.log(this.heroisAchados)
-    this.tela.atualizarImagens(heroisOcultos)
+    if (this.heroisAchados.length) {
+      const heroisAchados = this.heroisAchados.map(({ nome, id }) => {
+        const { img } = this.heroisIniciais.find(item => item.nome === nome)
 
-    this.heroisEscondidos = heroisOcultos
+        return {
+          id,
+          nome,
+          img
+        }
+      })
+
+      const correto = heroisOcultos.map(heroi => {
+        const achado = heroisAchados.find(({ nome }) => nome === heroi.nome)
+
+        return {
+          id: heroi.id,
+          nome: heroi.nome,
+          img: achado ? achado.img : heroi.img
+        }
+      })
+
+      this.tela.atualizarImagens(correto)
+      this.heroisEscondidos = correto
+    } else {
+      this.tela.atualizarImagens(heroisOcultos)
+
+      this.heroisEscondidos = heroisOcultos
+    }
   }
 
   exibirHerois(nomeDoHeroi) {
@@ -92,7 +116,7 @@ class JogoDaMemoria {
         if (opcao1.nome === item.nome && opcao1.id !== item.id) {
           // alert(`Combinação correta! Você escolheu: ${item.nome.toUpperCase()}`)
           this.heroisAchados.push(item)
-          this.heroisAchados.push(opcao1)
+          // this.heroisAchados.push(opcao1)
           this.exibirHerois(item.nome)
           this.tela.exibirMensagem(true, item.nome)
           return;
@@ -118,7 +142,7 @@ class JogoDaMemoria {
     }
 
     this.tela.atualizarImagens(heroisEscondidos)
-    await this.util.timeout(1500)
+    await this.util.timeout(2500)
     this.esconderHerois(heroisEscondidos)
   }
 
