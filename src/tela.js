@@ -24,7 +24,7 @@ class Tela {
     return `
     <div class="col-md-2">
       <div class="card" style="width: 50%;" onclick="window.verificarSelecao('${item.id}', '${item.nome}')">
-        <img src="${item.img}" name="${item.nome}" class="card-img-top" alt="${item.nome}">
+        <img src="${item.img}" name="${item.nome}" id="${item.id}" class="card-img-top" alt="${item.nome}">
       </div>
       <br />
     </div>
@@ -57,6 +57,11 @@ class Tela {
   static exibirHerois(nomeDoHeroi, img) {
     const elementosHtml = document.getElementsByName(nomeDoHeroi)
     elementosHtml.forEach(item => (item.src = img))
+  }
+
+  static exibirCarta(idDoHeroi, img) {
+    const elementosHtml = document.getElementById(idDoHeroi)
+    elementosHtml.src = img
   }
 
   static async exibirMensagem(sucesso = true, nomeDoHeroi = '') {

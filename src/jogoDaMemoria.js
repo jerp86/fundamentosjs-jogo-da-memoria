@@ -4,6 +4,7 @@ class JogoDaMemoria {
     this.util = util
 
     this.heroisIniciais = [
+      { img: './arquivos/badass.png', nome: 'badass' },
       { img: './arquivos/batman.png', nome: 'batman' },
       { img: './arquivos/big.png', nome: 'big' },
       { img: './arquivos/capitao.png', nome: 'capitao' },
@@ -101,9 +102,17 @@ class JogoDaMemoria {
     this.tela.exibirHerois(nomeDoHeroi, img)
   }
 
-  verificarSelecao(id, nome) {
+  exibirCarta(idDoHeroi, nomeDoHeroi, mostra = true) {
+    let { img } = this.heroisIniciais.find(({ nome }) => nomeDoHeroi === nome)
+    img = mostra ? img : this.iconePadrao
+
+    this.tela.exibirCarta(idDoHeroi, img)
+  }
+
+  async verificarSelecao(id, nome) {
+    this.exibirCarta(id, nome)
     const item = { id, nome }
-    // alert(`Olá ${item.nome}, ${item.id}`)
+
     const heroisSelecionados = this.heroisSelecionados.length
     switch (heroisSelecionados) {
       case 0:
@@ -116,7 +125,6 @@ class JogoDaMemoria {
         if (opcao1.nome === item.nome && opcao1.id !== item.id) {
           // alert(`Combinação correta! Você escolheu: ${item.nome.toUpperCase()}`)
           this.heroisAchados.push(item)
-          // this.heroisAchados.push(opcao1)
           this.exibirHerois(item.nome)
           this.tela.exibirMensagem(true, item.nome)
           return;
@@ -124,11 +132,16 @@ class JogoDaMemoria {
 
         if (opcao1.nome === item.nome) {
           this.tela.exibirMensagem(false, opcao1.nome.concat(' na mesma posição!'))
+          this.exibirCarta(id, nome, false)
+          // this.exibirCarta(opcao1.id, opcao1.nome, false)
           return;
         }
 
         // alert('Opção incorreta!! :wrong:')
         this.tela.exibirMensagem(false, opcao1.nome.concat(' e ').concat(item.nome))
+        await this.util.timeout(1000)
+        this.exibirCarta(id, nome, false)
+        this.exibirCarta(opcao1.id, opcao1.nome, false)
         break;
     }
   }
