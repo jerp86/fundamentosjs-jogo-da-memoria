@@ -28,6 +28,7 @@ class JogoDaMemoria {
     this.iconePadrao = './arquivos/padrao.png'
     this.heroisEscondidos = []
     this.heroisSelecionados = []
+    this.heroisAchados = []
   }
 
   inicializar() {
@@ -35,6 +36,7 @@ class JogoDaMemoria {
 
     this.tela.configurarBotaoJogar(this.jogar.bind(this))
     this.tela.configurarBotaoVerificarSelecao(this.verificarSelecao.bind(this))
+    this.tela.configurarBotaoMostrarTudo(this.mostrarHeroisEscondidos.bind(this))
   }
 
   async embaralhar() {
@@ -48,7 +50,10 @@ class JogoDaMemoria {
     this.tela.atualizarImagens(copias)
     this.tela.exibirCarregando()
 
+    const idDoIntervalo = this.tela.iniciarContador()
+
     await this.util.timeout(5000)
+    this.tela.limparContador(idDoIntervalo)
     this.esconderHerois(copias)
     this.tela.exibirCarregando(false)
   }
@@ -60,9 +65,10 @@ class JogoDaMemoria {
       img: this.iconePadrao
     }))
 
+    // console.log(this.heroisAchados)
     this.tela.atualizarImagens(heroisOcultos)
 
-    this.heroisOcultos = heroisOcultos
+    this.heroisEscondidos = heroisOcultos
   }
 
   exibirHerois(nomeDoHeroi) {
@@ -85,6 +91,8 @@ class JogoDaMemoria {
 
         if (opcao1.nome === item.nome && opcao1.id !== item.id) {
           // alert(`Combinação correta! Você escolheu: ${item.nome.toUpperCase()}`)
+          this.heroisAchados.push(item)
+          this.heroisAchados.push(opcao1)
           this.exibirHerois(item.nome)
           this.tela.exibirMensagem(true, item.nome)
           return;
@@ -99,6 +107,19 @@ class JogoDaMemoria {
         this.tela.exibirMensagem(false, opcao1.nome.concat(' e ').concat(item.nome))
         break;
     }
+  }
+
+  async mostrarHeroisEscondidos() {
+    const heroisEscondidos = this.heroisEscondidos
+
+    for (const heroi of heroisEscondidos) {
+      const { img } = this.heroisIniciais.find(item => item.nome === heroi.nome)
+      heroi.img = img
+    }
+
+    this.tela.atualizarImagens(heroisEscondidos)
+    await this.util.timeout(1500)
+    this.esconderHerois(heroisEscondidos)
   }
 
   jogar() {

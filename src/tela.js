@@ -6,6 +6,7 @@ const ID_MENSAGEM = 'mensagem'
 const CLASSE_INVISIVEL = 'invisible'
 const ID_CARREGANDO = 'carregando'
 const ID_CONTADOR = 'contador'
+const ID_BTN_MOSTRAR = 'mostrarTudo'
 
 const MENSAGENS = {
   sucesso: {
@@ -85,5 +86,32 @@ class Tela {
     }
 
     carregando.classList.add(CLASSE_INVISIVEL)
+  }
+
+  static iniciarContador() {
+    let contarAte = 5
+
+    const elementoContador = document.getElementById(ID_CONTADOR)
+    const identificadorNoTexto = '$$contador'
+    const textoPadrao = `Começando em ${identificadorNoTexto} segundos...`
+
+    const atualizarTexto = () => (
+      elementoContador.innerHTML = textoPadrao.replace(identificadorNoTexto, contarAte--)
+    )
+
+    atualizarTexto()
+
+    const idDoIntervalor = setInterval(atualizarTexto, 1000)
+    return idDoIntervalor
+  }
+
+  static limparContador(idDoIntervalor) {
+    clearInterval(idDoIntervalor)
+    document.getElementById(ID_CONTADOR).innerHTML = ''
+  }
+
+  static configurarBotaoMostrarTudo(funcaoOnClick) {
+    const btnMostrarTudo = document.getElementById(ID_BTN_MOSTRAR)
+    btnMostrarTudo.onclick = funcaoOnClick
   }
 }
