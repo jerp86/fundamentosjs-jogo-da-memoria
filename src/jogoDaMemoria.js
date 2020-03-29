@@ -133,7 +133,6 @@ class JogoDaMemoria {
         if (opcao1.nome === item.nome) {
           this.tela.exibirMensagem(false, opcao1.nome.concat(' na mesma posição!'))
           this.exibirCarta(id, nome, false)
-          // this.exibirCarta(opcao1.id, opcao1.nome, false)
           return;
         }
 
