@@ -20,16 +20,12 @@
 
 ---
 
-<h2 align="center">
-  Indice
-</h3>
+# Indice
 
-<p align="center">
-  🎮️ <a href="#-sobre">Sobre</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  👨‍💻️ <a href="#-tecnologias-utilizadas">Tecnogias utilizadas</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  📦️ <a href="#-como-baixar-o-projeto">Como baixar o projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  🤔️ <a href="#-como-contribuir">Como contribuir</a>
-</p>
+- [Sobre](#-sobre)
+- [Tecnogias utilizadas](#-tecnogias-utilizadas)
+- [Como baixar o projeto](#-como-baixar-o-projeto)
+- [Como contribuir](#-como-contribuir)
 
 ---
 
