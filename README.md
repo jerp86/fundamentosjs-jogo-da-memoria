@@ -22,10 +22,10 @@
 
 # Indice
 
-- [Sobre](#-sobre)
-- [Tecnogias utilizadas](#-tecnogias-utilizadas)
-- [Como baixar o projeto](#-como-baixar-o-projeto)
-- [Como contribuir](#-como-contribuir)
+- [Sobre](#%EF%B8%8F-sobre)
+- [Tecnogias utilizadas](#%EF%B8%8F-tecnogias-utilizadas)
+- [Como baixar o projeto](#%EF%B8%8F-como-baixar-o-projeto)
+- [Como contribuir](#%EF%B8%8F-como-contribuir)
 
 ---
 
