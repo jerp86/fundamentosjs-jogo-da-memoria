@@ -20,6 +20,8 @@
 
 ---
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2b149c750f0a435f92b8c7e876a159e7)](https://app.codacy.com/manual/jerp86/fundamentosjs-jogo-da-memoria?utm_source=github.com&utm_medium=referral&utm_content=jerp86/fundamentosjs-jogo-da-memoria&utm_campaign=Badge_Grade_Dashboard)
+
 # Indice
 
 - 🎮️ [Sobre](#%EF%B8%8F-sobre)
